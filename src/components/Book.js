@@ -1,12 +1,14 @@
-import React from "react";
+import React from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable  react/destructuring-assignment */
 
-function Book (props){
-return(
+function Book(props) {
+  return (
     <div className="book-container">
-    <h3 className="book-title">{props.title}</h3>
-        <p className="book-author">{props.author}</p>
-        <button type ="button" className="remove-btn">Remove</button>
+      <h3 className="book-title">{props.title}</h3>
+      <p className="book-author">{props.author}</p>
+      <button type="button" className="remove-btn">Remove</button>
     </div>
-);
+  );
 }
 export default Book;
