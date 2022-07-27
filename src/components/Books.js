@@ -1,6 +1,8 @@
 import React from 'react';
 import Book from './Book';
 import AddBook from './AddBook';
+/* eslint-disable react/prop-types */
+/* eslint-disable  react/destructuring-assignment */
 
 const Books = () => {
   const bookList = [{
