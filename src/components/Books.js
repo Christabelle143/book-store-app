@@ -1,6 +1,6 @@
 import React from 'react';
 import Book from './Book';
-import AddBook from './addBook';
+import AddBook from './AddBook';
 
 const Books = () => {
   const bookList = [{
