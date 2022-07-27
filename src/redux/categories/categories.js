@@ -3,7 +3,7 @@ const STATUS_CHECK = 'bookstore/categories/STATUS_CHECK';
 const initialState = [];
 
 // Action creator
-export const check = () => ({
+export const checkStatus = () => ({
   type: STATUS_CHECK,
 });
 
