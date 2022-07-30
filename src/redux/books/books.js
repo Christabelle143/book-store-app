@@ -2,7 +2,23 @@
 const ADD_BOOK = 'bookstore/books/ADD_BOOK';
 const REMOVE_BOOK = 'bookstore/books/REMOVE_BOOK';
 
-const initialState = [];
+const initialState = [
+  {
+    id: 1,
+    title: 'THE HUNGER GAMES',
+    author: 'Suzanne Collins',
+  },
+  {
+    id: 2,
+    title: 'DUNE',
+    author: 'Frank Herbert',
+  },
+  {
+    id: 3,
+    title: 'Capital in the Twenty-first Century',
+    author: 'Suzanne Collins',
+  },
+];
 
 export const addBook = (book) => ({
   type: ADD_BOOK,
@@ -14,15 +30,15 @@ export const removeBook = (index) => ({
   payload: index,
 });
 
+// eslint-disable-next-line default-param-last
 const booksReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_BOOK:
-      return { state: [...state.state, action.payload] };
+      return [...state, action.payload];
     case REMOVE_BOOK:
-      return [...state.slice(0, action.index),
-        ...state.slice(action.index + 1), state.length];
+      return [...state.filter((item) => item.id !== action.index)];
     default:
-      return { state };
+      return state;
   }
 };
 
