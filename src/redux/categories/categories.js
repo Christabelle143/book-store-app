@@ -8,6 +8,7 @@ export const checkStatus = () => ({
 });
 
 // Reducer
+// eslint-disable-next-line default-param-last
 const categoriesReducer = (state = initialState, action) => {
   switch (action.type) {
     case STATUS_CHECK:
