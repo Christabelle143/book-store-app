@@ -36,6 +36,7 @@ function AddBook() {
           author: state.author,
         }),
       );
+      setState({ title: '', author: '' });
     }
   };
 

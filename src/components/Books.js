@@ -6,7 +6,6 @@ import AddBook from './addBook';
 function Books(props) {
   // eslint-disable-next-line react/prop-types
   const { bookList } = props;
-  console.log('Books', bookList);
   return (
     // eslint-disable-next-line react/jsx-no-comment-textnodes
     <div>
