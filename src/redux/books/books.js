@@ -1,24 +1,14 @@
 // Define action types for adding and removing a book.
 const ADD_BOOK = 'bookstore/books/ADD_BOOK';
 const REMOVE_BOOK = 'bookstore/books/REMOVE_BOOK';
+const GET_BOOK = 'bookstore/books/GET_BOOK';
 
-const initialState = [
-  {
-    id: 1,
-    title: 'THE HUNGER GAMES',
-    author: 'Suzanne Collins',
-  },
-  {
-    id: 2,
-    title: 'DUNE',
-    author: 'Frank Herbert',
-  },
-  {
-    id: 3,
-    title: 'Capital in the Twenty-first Century',
-    author: 'Suzanne Collins',
-  },
-];
+const initialState = [];
+
+export const getBooks = (books) => ({
+  type: GET_BOOK,
+  payload: books,
+});
 
 export const addBook = (book) => ({
   type: ADD_BOOK,

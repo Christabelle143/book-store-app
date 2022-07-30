@@ -1,13 +1,20 @@
+/* eslint-disable*/
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { addBook } from '../redux/books/books';
+import { fetchBooks } from './Books';
 
-function AddBook() {
+const baseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/uR4N2zYKBpWiNUXcGKzN/books';
+function AddBook(props) {
+  const { fetchBooks } = props
   const bookList = useSelector((state) => state);
   const dispatch = useDispatch();
   const [state, setState] = useState({
     title: '',
     author: '',
+    category: 'Action',
+    item_id: uuidv4(),
   });
 
   const read = (e) => {
@@ -29,14 +36,24 @@ function AddBook() {
         }
       }
 
-      dispatch(
-        addBook({
-          id: maxID + 1,
-          title: state.title,
-          author: state.author,
-        }),
-      );
-      setState({ title: '', author: '' });
+      fetch(baseURL, {
+        method: 'POST',
+        body: JSON.stringify(state),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      }).then(response => {if(response.status == 201)fetchBooks()});
+
+     // dispatch(
+     //   addBook({
+     //     id: maxID + 1,
+    //      title: state.title,
+     //     author: state.author,
+     //   }),
+    //  );
+      setState({
+        ...state, title: '', author: '', item_id: uuidv4(),
+      });
     }
   };
 

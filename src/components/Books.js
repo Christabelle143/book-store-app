@@ -1,18 +1,36 @@
-/* eslint-disable react/prop-types */
-import React from 'react';
+/* eslint-disable */
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Book from './Book';
 import AddBook from './addBook';
+import { getBooks } from '../redux/books/books';
 
 function Books(props) {
   // eslint-disable-next-line react/prop-types
-  const { bookList } = props;
+  const [bookList, setBookList] = useState({})
+  const dispatch = useDispatch();
+  const baseURL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/uR4N2zYKBpWiNUXcGKzN/books';
+  const fetchBooks = () => {
+    fetch(baseURL).then((data) => {
+      data.json().then((dataJson) => {
+        dispatch(getBooks(dataJson));
+        setBookList(dataJson)
+      });
+    });
+  };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
+  //const { bookList } = props;
   return (
     // eslint-disable-next-line react/jsx-no-comment-textnodes
     <div>
-      {bookList.map((book) => (
-        <Book key={book.id} title={book.title} author={book.author} id={book.id} />
+      {Object.values(bookList).map((book, index) => (
+        <Book key={index} title={ book[0]?.title} author={book[0]?.author} id={index} />
       ))}
-      <AddBook />
+      <AddBook fetchBooks={fetchBooks} />
     </div>
   );
 }
